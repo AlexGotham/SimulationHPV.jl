@@ -1,0 +1,7 @@
+name = "SimulationHPV"
+uuid = "e510ab29-f908-4277-b8dc-2622eb127af1"
+authors = ["AlexGotham <aleger567@gmail.com>"]
+version = "0.0.1"
+
+[compat]
+julia = "1.10"
