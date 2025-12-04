@@ -33,8 +33,9 @@ end
 #prop = borneSomme([16.5,70.9,7.2]/100,[20.7,75.5,9.4]/100)
 
 # Fonction sigmoïde
-function sigmoid(x::Vector{Float64})
+
+function sigmoid(x::Float64)
     return ( 1 ./ ( 1 .+ exp.( - x ) ) ) 
 end
 
-#sigmoid([12.0,12.0,130])
+#print(sigmoid.([12.0,12.0,130]))

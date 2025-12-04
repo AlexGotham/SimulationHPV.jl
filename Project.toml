@@ -5,9 +5,11 @@ authors = ["AlexGotham <aleger567@gmail.com>"]
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Roots = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
 Distributions = "0.25.122"
+Roots = "2.2.10"
 Statistics = "1.11.1"
 julia = "1.10"
