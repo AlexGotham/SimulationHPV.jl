@@ -1,6 +1,6 @@
-# fonction pour tirer une proportion a partir d'un IC
+# Fonction pour tirer une proportion a partir d'un IC
 using Distributions
-function BorneSomme(vec_inf::Vector{Float64},vec_sup::Vector{Float64})
+function borneSomme(vec_inf::Vector{Float64},vec_sup::Vector{Float64})
     n = length(vec_inf)
     somme = 0
     prop = Vector{Float64}(undef,n)
@@ -17,7 +17,7 @@ end
 
 # Fonction qui généralise la simulation: 
 
-function Simul_Var(mod_var::Vector{String}, prop_var::Vector{Float64}, tauxEvolution::Vector{Vector{Float64}}, n::Int64)
+function simul_Var(mod_var::Vector{String}, prop_var::Vector{Float64}, tauxEvolution::Vector{Vector{Float64}}, n::Int64)
     # Population
     modalite_age = c("18-19","20-24","25-34","35-44")
     prop_age = [0.06,0.18,0.37,0.39]
@@ -30,12 +30,11 @@ function Simul_Var(mod_var::Vector{String}, prop_var::Vector{Float64}, tauxEvolu
     end
     return vec
 end
-#prop = BorneSomme([16.5,70.9,7.2]/100,[20.7,75.5,9.4]/100)
+#prop = borneSomme([16.5,70.9,7.2]/100,[20.7,75.5,9.4]/100)
 
- taux_age_sex = [
-    [1.2, 1.6, 1.2, 0], 
-    [1,1.6,1,0.4],  
-    [1,1.4,1,0.6],   
-    [1,1.4,1,0.6]]
+# Fonction sigmoïde
+function sigmoid(x::Vector{Float64})
+    return ( 1 ./ ( 1 .+ exp.( - x ) ) ) 
+end
 
-    
+#sigmoid([12.0,12.0,130])
