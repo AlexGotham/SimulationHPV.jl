@@ -19,7 +19,7 @@ end
 
 function Simul_Var(mod_var::Vector{String}, prop_var::Vector{Float64}, tauxEvolution::Vector{Vector{Float64}}, n::Int64)
     # Population
-    modalite_age = c("18-19","20-24","25-34","35-44")
+    modalite_age = ["18-19","20-24","25-34","35-44"]
     prop_age = [0.06,0.18,0.37,0.39]
     simul_age = n * prop_age
     vec = Vector{Float64}(undef,n)
