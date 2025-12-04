@@ -1,7 +1,13 @@
 name = "SimulationHPV"
 uuid = "e510ab29-f908-4277-b8dc-2622eb127af1"
-authors = ["AlexGotham <aleger567@gmail.com>"]
 version = "0.0.1"
+authors = ["AlexGotham <aleger567@gmail.com>"]
+
+[deps]
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
+Distributions = "0.25.122"
+Statistics = "1.11.1"
 julia = "1.10"
