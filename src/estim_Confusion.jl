@@ -1,6 +1,6 @@
 # Fonction qui généralise la simulation: 
 using Distributions
-function Estim_Confusion(mod_var::Vector{String}, prop_var::Vector{Float64}, tauxEvolution::Vector{Vector{Float64}}, n::Int64, proportion_age::Vector{Float64})
+function estim_Confusion(mod_var::Vector{String}, prop_var::Vector{Float64}, tauxEvolution::Vector{Vector{Float64}}, n::Int64, proportion_age::Vector{Float64})
     # Population
     modalite_age = ["18-19","20-24","25-34","35-44"]
     prop_age = proportion_age
@@ -19,4 +19,4 @@ end
 # moda_ageSexe = ["18-19","20-24","25-34","35-44"]
 # propo_ageSexe = [0.1,0.2,0.4,0.3]
 # n = 5
-# Estim_Confusion(moda_ageSexe,propo_ageSexe,taux_age_sex,n,propo_age)
+# estim_Confusion(moda_ageSexe,propo_ageSexe,taux_age_sex,n,propo_age)
