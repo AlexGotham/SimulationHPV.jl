@@ -11,7 +11,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     born_inf_age = [5,16,34.7,37.1]/100
     born_sup_age = [6.8,19.2,39.2, 42.3]/100
     prop_age = borneSomme(born_inf_age,born_sup_age)
-    age = sample(modalite_age, n; replace = true, probs = prop_age) 
+    age = wsample(modalite_age, prop_age, n) 
     
     # simulation  HPV vaccination status
     modalite_vac = ["Vaccinated","Unvaccinated"]
@@ -26,7 +26,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     # proportion condomless sex with partner, past year
     modalite_condomless = ["0","1","2 et +"]
     born_inf_condomless = [16.5,70.9,7.2]/100
-    born_sup_condomless = [20.7,75.5,7.2,9.4]/100
+    born_sup_condomless = [20.7,75.5,9.4]/100
     prop_condomless = borneSomme(born_inf_condomless,born_sup_condomless)
 
     # proportion de Total partners, past 5 years
@@ -43,7 +43,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
         [1,1.4,1,0.6],   
         [1,1.4,1,0.6]
     ]
-    SimulFirstTime = estim_Confusion(modalite_age, prop_age, taux_age_sex , n)
+    SimulFirstTime = estim_Confusion(modalite_age, prop_age, taux_age_sex , n, prop_age)
 
     # Utilisation de protection en fonction de l'âge
     taux_condomless = [
@@ -52,7 +52,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
         [1,1.4,1],   
         [1,1.4,1]
     ]
-    SimulCondom = estim_Confusion(modalite_condomless, prop_condomless, taux_condomless, n)
+    SimulCondom = estim_Confusion(modalite_condomless, prop_condomless, taux_condomless, n, prop_age)
 
     # Nombre de partenaire en fonction de l'âge
     taux_partner = [
@@ -61,7 +61,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
         [0.3,1.5,1.1,1.1,1],   
         [0.3,1.7,1.1,1.1,0.8]
     ]
-    SimulPartner = estim_Confusion(modalite_partner, prop_partner, taux_partner, n)
+    SimulPartner = estim_Confusion(modalite_partner, prop_partner, taux_partner, n, prop_age)
 
     # Regroupement des données dans un dataframe
     Age = sort(age)
@@ -71,22 +71,22 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     # Etape 3 : Infection pour n souches
     # Binariser toutes les variables
     DF_bool = DataFrame(
-    age_18_19 = ifelse(DF.Age == "18-19",1,0),
-    age_20_24 = ifelse(DF.Age == "20-24",1,0),
-    age_25_34 = ifelse(DF.Age == "25-34",1,0),
-    age_35_44 = ifelse(DF.Age == "35-44",1,0),
-    first_time_13_15 = ifelse(DF;SimulFirstTime == "13-15",1,0),
-    first_time_16_17 = ifelse(DF.SimulFirstTime == "16-17",1,0),
-    first_time_18_19 = ifelse(DF.SimulFirstTime == "18-19",1,0),
-    first_time_20 = ifelse(DF.SimulFirstTime == "20 et +",1,0),
-    condomless_0 = ifelse(DF.SimulCondom == "0",1,0),
-    condomless_1 = ifelse(DF.SimulCondom == "1",1,0),
-    condomless_2 = ifelse(DF.SimulCondom == "2 et +",1,0),
-    partner_0 = ifelse(DF.SimulPartner == "0",1,0),
-    partner_1 = ifelse(DF.SimulPartner == "1",1,0),
-    partner_2 = ifelse(DF.SimulPartner == "2",1,0),
-    partner_3_4 = ifelse(DF.SimulPartner == "3-4",1,0),
-    partner_5 = ifelse(DF.SimulPartner == "5 et +",1,0)  
+    age_18_19 = ifelse.(DF.Age .== "18-19",1,0),
+    age_20_24 = ifelse.(DF.Age .== "20-24",1,0),
+    age_25_34 = ifelse.(DF.Age .== "25-34",1,0),
+    age_35_44 = ifelse.(DF.Age .== "35-44",1,0),
+    first_time_13_15 = ifelse.(DF.SimulFirstTime .== "13-15",1,0),
+    first_time_16_17 = ifelse.(DF.SimulFirstTime .== "16-17",1,0),
+    first_time_18_19 = ifelse.(DF.SimulFirstTime .== "18-19",1,0),
+    first_time_20 = ifelse.(DF.SimulFirstTime .== "20 et +",1,0),
+    condomless_0 = ifelse.(DF.SimulCondom .== "0",1,0),
+    condomless_1 = ifelse.(DF.SimulCondom .== "1",1,0),
+    condomless_2 = ifelse.(DF.SimulCondom .== "2 et +",1,0),
+    partner_0 = ifelse.(DF.SimulPartner .== "0",1,0),
+    partner_1 = ifelse.(DF.SimulPartner .== "1",1,0),
+    partner_2 = ifelse.(DF.SimulPartner .== "2",1,0),
+    partner_3_4 = ifelse.(DF.SimulPartner .== "3-4",1,0),
+    partner_5 = ifelse.(DF.SimulPartner .== "5 et +",1,0)  
     )
 
     # Simulation des vaccins en fonction des covariables
@@ -94,7 +94,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     DF_bool[!, :Vaccin] = SimulVaccin
 
     # Paramètres de l'âge
-    W <- [
+    W = [
         [0.5, 1, 1, -0.5], 
         [1.5,1,-0.5,1],  
         [2.5,-0.5,1,2.5],  

@@ -4,8 +4,10 @@ using DataFrames
 using Distributions
 
 function estim_Vaccin(df_bool::DataFrame, prop_vaccin::Float64)
+    W = [2.5,-0.5,1,2.5] # effet de l'age sur le vaccin
     A = [- 0.5, 1, 1.5, 2, -0.5, 1.5, 2.5, -0.5, 1, 1.5, 2, 2.5] # coeff de confusion fixé
-    regression = Matrix(df_bool) * A
+    coef = vcat(W,A)
+    regression = Matrix(df_bool) * coef
 
     # Calcul pour une prévalence 
     β₀ = estim_b0.(prop_vaccin,regression)
