@@ -11,4 +11,4 @@ function estim_b0(incidence::Float64, reg::Float64)
    return res
 end
 
-#print(estim_b0.([0.05,0.06],[12.9,13]))
+

@@ -26,5 +26,3 @@ function estim_HPV(df_bool::DataFrame, W::Vector{Float64}, souche::Int64, target
 end
 
 
-# df_bool_HPV = DataFrame(rand(Bool, 100, 15),:auto)
-# print(estim_HPV(df_bool_HPV,[0.4,0.2],6,0.05))

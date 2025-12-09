@@ -14,4 +14,3 @@ function borneSomme(vec_inf::Vector{Float64},vec_sup::Vector{Float64})
     return prop
 end
 
-#prop = borneSomme([16.5,70.9,7.2]/100,[20.7,75.5,9.4]/100)

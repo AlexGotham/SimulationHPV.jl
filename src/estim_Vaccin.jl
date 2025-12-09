@@ -20,6 +20,3 @@ function estim_Vaccin(df_bool::DataFrame, prop_vaccin::Float64)
 end
 
 
-# df_bool_vaccin = DataFrame(rand(Bool, 100, 12),:auto)
-# prop_vaccin_simul = 0.55
-# print(estim_Vaccin(df_bool, prop_vaccin_simul))
