@@ -1,7 +1,7 @@
 module SimulationHPV
 
 using Roots, Statistics, Distributions, DataFrames
-export datasets
+export datasets, sigmoid, estim_Confusion, estim_Vaccin, estim_b0, estim_HPV, estim_proportionIC
 
 # Write your package code here.
 include("main.jl")
