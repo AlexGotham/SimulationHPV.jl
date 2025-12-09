@@ -2,6 +2,14 @@
 using DataFrames
 using Distributions
 
+include("main.jl")
+include("estim_b0.jl")
+include("estim_Confusion.jl")
+include("estim_HPV.jl")
+include("estim_proportionIC.jl")
+include("estim_Sigmoid.jl")
+include("estim_Vaccin.jl")
+
 function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     # Initialisation 
     # ----------------------------------------------------------------------------
