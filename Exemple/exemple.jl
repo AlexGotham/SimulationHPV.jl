@@ -1,4 +1,5 @@
 using SimulationHPV
+using DataFrames
 
 # Fonction sigmoïde
 print(sigmoid.([12.0,12.0,130]))
