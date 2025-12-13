@@ -1,6 +1,7 @@
 # SimulationHPV
 
-Ce package a pour but de simuler un jeu de données représentant des femmes entre 18 et 44 ans qui peuvent être potentiellement affectées par le papillomavirus.
+Ce package a pour but de simuler un jeu de données représentant des femmes entre 18 et 44 ans pouvant être potentiellement affectées par le papillomavirus.
+Le jeu de données contient une variable binaire représentant la vaccination, une variable catégorielle de classe d'âge, des variables catégorielles sur les habitudes sexuelles des individus et des variables représentant des infections aux souches HPV. Les habitudes sexuelles sont simulées en fonction de l'âge. Les vaccinations en fonction de l'âge et des habitudes sexuelles. Et les infections en fonction des trois dernières.
 
 La fonction "datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})" retourne le jeu de données simulé et prend en entrée "n" le nombre d'individus, "target" un vecteur contenant les incidences souhaitées pour chaque infection et "souches" un vecteur contenant le numéro des souches HPV à simuler.
 
