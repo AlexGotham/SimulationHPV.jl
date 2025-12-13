@@ -20,8 +20,8 @@ print(estim_Vaccin(df_bool_vaccin, prop_vaccin_simul))
 # Fonction Estim_b0
 print(estim_b0.([0.05,0.06],[12.9,13]))
 
-# Fonction Estim_HPV
-prop = SimulationHPV.borneSomme([16.5,70.9,7.2]/100,[20.7,75.5,9.4]/100)
+# Fonction Estim_HPV et borneSomme
+prop = borneSomme([16.5,70.9,7.2]/100,[20.7,75.5,9.4]/100)
 df_bool_HPV = DataFrame(rand(Bool, 100, 15),:auto)
 print(estim_HPV(df_bool_HPV,[0.4,0.2],6,0.05))
 
