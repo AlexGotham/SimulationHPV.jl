@@ -92,6 +92,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
 
     # Simulation des vaccins en fonction des covariables
     SimulVaccin = estim_Vaccin(DF_bool, prop_vac)
+    DF.SimulVaccin = SimulVaccin
     DF_bool[!, :Vaccin] = SimulVaccin
 
     # Paramètres de l'âge
