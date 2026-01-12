@@ -95,13 +95,14 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     DF_bool[!, :Vaccin] = SimulVaccin
 
     # Paramètres de l'âge
-    W = [
-        [0.5, 1, 1, -0.5], 
-        [1.5,1,-0.5,1],  
-        [2.5,-0.5,1,2.5],  
-        [0.5,1,0.5,2],   
-        [2,1.5,-0.5,2.5]
-    ]
+    W = estim_coefW(length(souche))
+    # W = [
+    #     [0.5, 1, 1, -0.5], 
+    #     [1.5,1,-0.5,1],  
+    #     [2.5,-0.5,1,2.5],  
+    #     [0.5,1,0.5,2],   
+    #     [2,1.5,-0.5,2.5]
+    # ]
 
     # Génération des infections par souches
     df_infection = DataFrame()
