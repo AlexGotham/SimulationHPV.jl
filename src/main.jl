@@ -108,7 +108,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     # Génération des infections par souches
     df_infection = DataFrame()
     for i in 1 : length(souche)
-        infection = estim_HPV(DF_bool, W[i], parse(Int64, souche[i]), target[i])
+        infection = estim_HPV(DF_bool, W[i,:], parse(Int64, souche[i]), target[i])
         df_infection[!, "HPV_" * souche[i]] = infection
     end 
 
