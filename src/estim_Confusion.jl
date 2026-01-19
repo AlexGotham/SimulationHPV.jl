@@ -7,10 +7,11 @@ function estim_Confusion(mod_var::Vector{String}, prop_var::Vector{Float64}, tau
     # simul_age = round.(Int,n * prop_age)
     simul_age = rand(Multinomial(n, proportion_age))
     vec = Vector{String}(undef,0)
-    for i in 1:length(prop_age)
+    for i in 1:length(proportion_age)
         prob = prop_var .* tauxEvolution[i]
         prob = prob / sum(prob)
-        vec = vcat(vec,wsample(mod_var,prob,simul_age[i]))
+        # vec = vcat(vec,wsample(mod_var,prob,simul_age[i]))
+        append!(vec, wsample(mod_var, prob, simul_age[i]))
     end
     return vec
 end
