@@ -15,7 +15,7 @@ function estim_b0_log(incidence::Float64, reg::Float64)
    function β₀(β) 
     mean(exp.(reg .+ β)) - incidence
    end
-   res = find_zero(β₀, [-20.0,0.0])
+   res = find_zero(β₀, -5.0)
    return res
 end
 
