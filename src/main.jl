@@ -5,36 +5,64 @@ using Distributions
 
 function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     # Initialisation 
+    # Pour Dirichlet
+    k = 80
     # ----------------------------------------------------------------------------
     # Etape 1 : Simulation des variables
     # simulation age
     modalite_age = ["18-19","20-24","25-34","35-44"]
     born_inf_age = [5,16,34.7,37.1]/100
     born_sup_age = [6.8,19.2,39.2, 42.3]/100
-    prop_age = borneSomme(born_inf_age,born_sup_age)
+    # prop_age = borneSomme(born_inf_age,born_sup_age)
+
+    # Avec Dirichlet
+    moy_age = (born_inf_age .+ born_sup_age) ./2
+    alpha_age = moy_age .* k
+    prop_age = estim_dirichlet(alpha_age,born_inf_age, born_sup_age)
     age = wsample(modalite_age, prop_age, n) 
     
+
     # simulation  HPV vaccination status
     modalite_vac = ["Vaccinated","Unvaccinated"]
     prop_vac = rand(Uniform(50,68))/100
     
+
     # simulation age first sex
     modalite_age_sex = ["13-15","16-17","18-19","20 et +"]
     born_inf_age_sex = [24.1,40.7,17.3,9.6]/100
     born_sup_age_sex = [28.1,45.8,21.6,13.3]/100
-    prop_age_sex = borneSomme(born_inf_age_sex,born_sup_age_sex)
+    # prop_age_sex = borneSomme(born_inf_age_sex,born_sup_age_sex)
+
+    # Avec Dirichlet
+    moy_age_sex = (born_inf_age_sex .+ born_sup_age_sex) ./2
+    alpha_age_sex = moy_age_sex .* k
+    prop_age_sex = estim_dirichlet(alpha_age_sex,born_inf_age_sex, born_sup_age_sex)
     
+
     # proportion condomless sex with partner, past year
     modalite_condomless = ["0","1","2 et +"]
     born_inf_condomless = [16.5,70.9,7.2]/100
     born_sup_condomless = [20.7,75.5,9.4]/100
-    prop_condomless = borneSomme(born_inf_condomless,born_sup_condomless)
+    # prop_condomless = borneSomme(born_inf_condomless,born_sup_condomless)
+
+    # Avec Dirichlet
+    moy_condomless = (born_inf_condomless .+ born_sup_condomless) ./2
+    alpha_condomless = moy_condomless .* k
+    prop_condomless = estim_dirichlet(alpha_condomless,born_inf_condomless, born_sup_condomless)
+
 
     # proportion de Total partners, past 5 years
     modalite_partner = ["0","1","2","3-4","5 et +"]
     born_inf_partner = [0.9,54.9,12.7,11.4,12.8]/100
     born_sup_partner = [2.4,59.8,15.8,14.4,15.6]/100
     prop_partner = borneSomme(born_inf_partner,born_sup_partner)
+    
+    # Avec Dirichlet
+    moy_partner = (born_inf_partner .+ born_sup_partner) ./2
+    alpha_partner = moy_partner.* k
+    prop_partner = estim_dirichlet(alpha_partner,born_inf_partner, born_sup_partner)
+
+    
     # ----------------------------------------------------------------------------
     # Etape 2 : Simulation des variables avec interaction de l'âge
     # Première fois en fonction de l'âge
