@@ -1,3 +1,4 @@
+using Distributions
 function estim_dirichlet(alpha, born_inf, born_sup)
     dist = Dirichlet(alpha)
     while true
