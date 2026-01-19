@@ -55,14 +55,14 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     modalite_partner = ["0","1","2","3-4","5 et +"]
     born_inf_partner = [0.9,54.9,12.7,11.4,12.8]/100
     born_sup_partner = [2.4,59.8,15.8,14.4,15.6]/100
-    prop_partner = borneSomme(born_inf_partner,born_sup_partner)
+    # prop_partner = borneSomme(born_inf_partner,born_sup_partner)
     
     # Avec Dirichlet
     moy_partner = (born_inf_partner .+ born_sup_partner) ./2
     alpha_partner = moy_partner.* k
     prop_partner = estim_dirichlet(alpha_partner,born_inf_partner, born_sup_partner)
 
-    
+
     # ----------------------------------------------------------------------------
     # Etape 2 : Simulation des variables avec interaction de l'âge
     # Première fois en fonction de l'âge
@@ -72,7 +72,7 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
         [1,1.4,1,0.6],   
         [1,1.4,1,0.6]
     ]
-    SimulFirstTime = estim_Confusion(modalite_age, prop_age, taux_age_sex , n, prop_age)
+    SimulFirstTime = estim_Confusion(modalite_age_sex, prop_age_sex, taux_age_sex , n, prop_age)
 
     # Utilisation de protection en fonction de l'âge
     taux_condomless = [
