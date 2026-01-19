@@ -30,3 +30,4 @@ end
 
 # proportion_age = prop_age
 # simul_age = rand(Multinomial(n, proportion_age))
+# sum(simul_age)  
