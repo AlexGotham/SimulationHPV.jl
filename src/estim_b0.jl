@@ -20,3 +20,5 @@ function estim_b0_log(incidence::Float64, reg::Float64)
 end
 
 
+print(estim_b0_log.([0.05,0.06],[12.9,13]))
+
