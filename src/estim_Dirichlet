@@ -1,4 +1,4 @@
-function simul_dirichlet(alpha, born_inf, born_sup)
+function estim_dirichlet(alpha, born_inf, born_sup)
     dist = Dirichlet(alpha)
     while true
         p = rand(dist)
