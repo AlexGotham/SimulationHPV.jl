@@ -13,7 +13,7 @@ function estim_HPV(df_bool::DataFrame, W::Vector{Float64}, souche::Int64, target
         coefVac = 0
     end
     coef = vcat(coefVac, W, A)
-    regression = Matrix(df_bool) * coef
+    regression = Matrix(df_bool) #* coef
 
     # Calcul pour une prévalence 
     # β₀ = estim_b0.(target,regression)
