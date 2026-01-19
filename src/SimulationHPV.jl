@@ -12,6 +12,6 @@ include("estim_proportionIC.jl")
 include("estim_Sigmoid.jl")
 include("estim_Vaccin.jl")
 include("estim_coefW.jl")
-include("estim_Dirichlet?jl")
+include("estim_Dirichlet.jl")
 
 end
