@@ -118,4 +118,3 @@ function datasets(n::Int64, target::Vector{Float64}, souche::Vector{String})
     DATA = hcat(DF,df_infection)
     return(DATA)
 end
-
