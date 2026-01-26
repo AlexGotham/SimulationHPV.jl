@@ -35,7 +35,3 @@ function estim_Vaccin_log(df_bool::DataFrame, prop_vaccin::Float64)
     return Vaccin
 end
 
-
-# df_bool_vaccin = DataFrame(rand(Bool, 100, 16),:auto)
-# prop_vaccin_simul = 0.55
-# print(mean(estim_Vaccin_log(df_bool_vaccin, prop_vaccin_simul)))
